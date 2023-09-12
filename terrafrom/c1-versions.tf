@@ -4,9 +4,11 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 3.63"
-     }
+      version = "~> 5.0"
+    }
+    
   }
+  # Backend - This bucket needs to create manually 
   backend "s3" {
     bucket = "tf-eks-12092023"
     key = "tf/terraform.tfstate"
@@ -16,5 +18,5 @@ terraform {
 
 # Terraform Provider Block
 provider "aws" {
-  region = "ap-south-1"
+  region = var.aws_region
 }
