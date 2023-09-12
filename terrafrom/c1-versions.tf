@@ -7,6 +7,11 @@ terraform {
       version = "~> 3.63"
      }
   }
+  backend "s3" {
+    bucket = "tf-eks-12092023"
+    key = "tf/terraform.tfstate"
+    region = "ap-south-1"
+  }
 }
 
 # Terraform Provider Block
