@@ -1,4 +1,5 @@
 # Create AWS EKS Cluster
+
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "${local.eks_cluster_name}"
   role_arn = aws_iam_role.eks_master_role.arn

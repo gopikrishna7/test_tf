@@ -8,14 +8,24 @@
 # #     name = "my-test-namespace"
 # #   }
 # # }
+data "aws_eks_cluster" "eks_cluster" {
+  name     = "${local.eks_cluster_name}"
+  depends_on = [ aws_eks_cluster.eks_cluster ]
+}
+
+data "aws_eks_cluster_auth" "eks_cluster_auth" {
+  name     = "${local.eks_cluster_name}"
+  depends_on = [ aws_eks_cluster.eks_cluster ]
+}
+
 
 
 provider "kubectl" {
-  config_path    = "~/.kube/config"
-  # host                   = var.eks_cluster_endpoint
-  # cluster_ca_certificate = base64decode(var.eks_cluster_ca)
-  # token                  = data.aws_eks_cluster_auth.main.token
-  # load_config_file       = false
+  # config_path    = "~/.kube/config"
+  host                   = data.aws_eks_cluster.eks_cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks_cluster.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.eks_cluster_auth.token
+  load_config_file       = false
 }
 
 data "kubectl_file_documents" "namespace" {

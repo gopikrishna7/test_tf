@@ -14,9 +14,9 @@ terraform {
   }
   # Backend - This bucket needs to create manually 
   backend "s3" {
-    bucket = "tf-eks-12092023"
+    bucket = "tf-eks-15092023"
     key = "tf/terraform.tfstate"
-    region = "ap-south-1"
+    region = "us-east-1"
   }
 }
 
