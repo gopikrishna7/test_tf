@@ -6,6 +6,10 @@ terraform {
       source = "hashicorp/aws"
       version = "~> 5.0"
     }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = ">= 1.7.0"
+    }
     
   }
   # Backend - This bucket needs to create manually 
